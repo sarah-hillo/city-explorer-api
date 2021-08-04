@@ -8,47 +8,54 @@ const PORT = process.env.PORT;
 const axios = require('axios');
 
 
-const weatherData = require('./data/weather.json');
+// const weatherData = require('./data/weather.json');
+const getWeather = require('./components/Forecast.js');
+const getMovies =require('./components/Movies.js')
 
 app.get('/', (request, response) => {
-    response.send('created')
+    response.send('hello from backend')
 });
+app.get('/weather',getWeather);
+app.get('/movies',getMovies);
 
-app.get('/weather', (request, response) => {
+//class07
+// app.get('/weather', (request, response) => {
 
-    let weatherData = weather.find(item => {
-        const lon = request.query.lon;
-        const lat = request.query.lat;
-        const searchQuery = request.query.searchQuery;
-        if (item.city_name == searchQuery || item.lon == lon || item.lat == lat) {
-            console.log(item.city_name);
-            return item.city_name;
-        } else {
-            return 'not found';
-        }
-    });
+//     let weatherData = weather.find(item => {
+//         const lon = request.query.lon;
+//         const lat = request.query.lat;
+//         const searchQuery = request.query.searchQuery;
+//         if (item.city_name == searchQuery || item.lon == lon || item.lat == lat) {
+//             console.log(item.city_name);
+//             return item.city_name;
+//         } else {
+//             return 'not found';
+//         }
+//     });
 
-                    class Forecast {
-                        constructor(datetime, description) {
-                            this.datetime = datetime;
-                            this.description = description;
-                        }
-                    }
-               let forcastArr = [];
-                    weatherData.data.map((item) => {
+//                     class Forecast {
+//                         constructor(datetime, description) {
+//                             this.datetime = datetime;
+//                             this.description = description;
+//                         }
+//                     }
+//                let forcastArr = [];
+//                     weatherData.data.map((item) => {
 
 
-                        forcastArr.push(new Forecast(` date${item.weather.datetime} description ${item.weather.description}`))
-                    });
+//                         forcastArr.push(new Forecast(` date${item.weather.datetime} description ${item.weather.description}`))
+//                     });
 
-                    response.send(forcastArr);
+//                     response.send(forcastArr);
 
-                });
+//                 });
 
-                app.listen(PORT, () => {
+//                 app.listen(PORT, () => {
 
-                    console.log(`the port ${PORT}`);
+//                     console.log(`the port ${PORT}`);
 
-                });
+//                 });
+
+app.listen(PORT,()=>console.log(`The port is ${PORT}`));
 
             
